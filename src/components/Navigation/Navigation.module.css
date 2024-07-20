@@ -1,0 +1,19 @@
+.navigationSection {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.navigationContainer {
+    max-width: 370px;
+    width:100%;
+    padding-inline: 15px;
+    margin-inline: auto;
+}
+
+.navigationLinks {
+    display: flex;
+    gap:6px;
+}
+.linkActive {
+    color: orange;
+}

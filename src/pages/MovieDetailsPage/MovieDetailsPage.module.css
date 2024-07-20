@@ -1,0 +1,15 @@
+.movieDetailsPageSection {
+    padding-top:12px;
+    padding-bottom: 12px;
+
+}
+.movieDetailsPageContainer {
+    max-width: 370px;
+    width:100%;
+    padding-inline: 15px;
+    margin-inline: auto;
+}
+
+/* .homePageTitle {
+    font-size: 24px;
+} */
