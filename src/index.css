@@ -68,7 +68,7 @@ h1,h2,h3,h4,h5,h6, p {
   padding:0;
 }
 h1 {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 h2 {
@@ -82,6 +82,7 @@ h3 {
 ul,ol {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 
@@ -89,6 +90,15 @@ ul,ol {
   padding-top: 12px;
   padding-bottom: 12px;
 }
+
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

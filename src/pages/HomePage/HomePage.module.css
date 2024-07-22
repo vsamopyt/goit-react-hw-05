@@ -1,6 +1,7 @@
 .homePageSection {
     padding-top:12px;
     padding-bottom: 12px;
+   
 
 }
 .homePageContainer {
@@ -11,5 +12,12 @@
 }
 
 .homePageTitle {
-    font-size: 24px;
+    /* font-size: 24px; */
+    margin-bottom: 20px;
+}
+
+.homePageLoadingContainer {
+ display: flex;
+ justify-content: center;
+ padding: 12px 0;
 }

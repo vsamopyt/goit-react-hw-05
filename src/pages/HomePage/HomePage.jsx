@@ -1,41 +1,44 @@
-import MovieList from "../../components/MovieList/MovieList";
-import {fetchTrendingMovies} from "../../movies-api"
-import { useState, useEffect } from "react";
-import css from "./HomePage.module.css"
-
-
-
+import BarLoader from 'react-spinners/BarLoader';
+import MovieList from '../../components/MovieList/MovieList';
+import { fetchTrendingMovies } from '../../movies-api';
+import { useState, useEffect } from 'react';
+import css from './HomePage.module.css';
 
 export default function HomePage() {
-  const [trendingMovies, setTrendingMovies] = useState([])
-useEffect (()=>{
-  async function getTrendinMovies () {
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [homePageLoading, sethomePageLoading] = useState(false);
+  const [homePageError, sethomePageError] = useState(false);
+  useEffect(() => {
+    async function getTrendinMovies() {
+      try {
+        sethomePageLoading(true);
 
-    try {
-      // setTreningMovies([])
-      const data = await fetchTrendingMovies ()
-      console.log(data)
-      console.log(data.data.results);
-      setTrendingMovies(data.data.results)
-      
-    } catch (error) {
-      // console.log(error);
+        const data = await fetchTrendingMovies();
+
+        setTrendingMovies(data.data.results);
+      } catch (error) {
+        sethomePageError(true);
+        // console.log(error);
+      } finally {
+        sethomePageLoading(false);
+      }
     }
-
-  }
-  getTrendinMovies()
-  console.log(trendingMovies);
-
-},[])
-
+    getTrendinMovies();
+    // console.log(trendingMovies);
+  }, []);
 
   return (
-    <section className={css.section}>
+    <section className={css.homePageSection}>
       <div className={css.homePageContainer}>
-      <h1 className={css.homePageTitle}>Top rated movies</h1>
-     {trendingMovies.length > 0 && <MovieList
-     array = {trendingMovies}
-     /> }
+        <h1 className={css.homePageTitle}>Top 20 rated movies, today</h1>
+        {homePageError && <p>Ooops! Something went wrong! Reload the page please!</p>}
+        {homePageLoading && (
+          <div className={css.homePageLoadingContainer}>
+            <BarLoader />
+          </div>
+        )}
+        {trendingMovies.length > 0 && <MovieList array={trendingMovies} />}
+        {/* {homePageLoading && <BarLoader/>} */}
       </div>
     </section>
   );

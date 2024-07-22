@@ -9,11 +9,20 @@ export default function MovieCard ({ item }) {
     <>
 
     {/* <Link to ="/movies/:movieId"><p>{title}</p></Link> */}
-     <Link to ={`/movies/${id}`}><img src ={ `https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title} /></Link>
+     <Link to ={`/movies/${id}`}>
+
+{poster_path !== null ?<img src ={ `https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title} /> : <img
+          src="https://dummyimage.com/400x600/cdcdcd/000.jpg&amp;text=No+poster"
+          alt=""
+        />}
+     {/* <img src ={ `https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title} /> */}
+
+     </Link>
      <div className={css.movieCardRatingContainer}>
      <span>Rating:</span> <span>{vote_average}</span>
         {/* <span>{vote_count}</span> */}
      </div>
+     {!poster_path &&  <p className={css.movieCardName}>{title}</p>}
      <div className={css.movieCardYearContainer}>
      <span>Release year:</span> <span>{releaseYear}</span>
         {/* <span>{vote_count}</span> */}
