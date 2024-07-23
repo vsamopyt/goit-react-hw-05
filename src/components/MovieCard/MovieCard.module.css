@@ -21,6 +21,13 @@
     position: absolute;
     left:5%;
     top:20%;
+    width: 300px;
     font-size: 56px;
     font-weight: bold;
+    white-space: wrap;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+
