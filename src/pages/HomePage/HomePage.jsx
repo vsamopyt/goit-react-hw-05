@@ -18,27 +18,26 @@ export default function HomePage() {
         setTrendingMovies(data.data.results);
       } catch (error) {
         sethomePageError(true);
-        // console.log(error);
       } finally {
         sethomePageLoading(false);
       }
     }
     getTrendinMovies();
-    // console.log(trendingMovies);
   }, []);
 
   return (
     <section className={css.homePageSection}>
       <div className={css.homePageContainer}>
         <h1 className={css.homePageTitle}>Top 20 rated movies, today</h1>
-        {homePageError && <p>Ooops! Something went wrong! Reload the page please!</p>}
+        {homePageError && (
+          <p>Ooops! Something went wrong! Reload the page please!</p>
+        )}
         {homePageLoading && (
           <div className={css.homePageLoadingContainer}>
             <BarLoader />
           </div>
         )}
         {trendingMovies.length > 0 && <MovieList array={trendingMovies} />}
-        {/* {homePageLoading && <BarLoader/>} */}
       </div>
     </section>
   );

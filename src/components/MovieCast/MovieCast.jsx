@@ -7,12 +7,14 @@ import css from './MovieCast.module.css';
 
 export default function MovieCast() {
   const { movieId } = useParams();
-
   const [movieCastDetail, setMovieCastDetail] = useState([]);
   const [movieCastLoading, setMovieCastLoading] = useState(false);
   const [movieCastError, setMovieCastError] = useState(false);
   useEffect(() => {
     async function getMovieCastById() {
+      if (!movieId) {
+        return;
+      }
       try {
         setMovieCastLoading(true);
         const result = await fetchMovieCastById(movieId);
@@ -25,11 +27,9 @@ export default function MovieCast() {
     }
     getMovieCastById();
   }, [movieId]);
-  console.log(movieCastDetail);
+ 
   return (
     <div>
-      
-
       <h2>Movie Cast</h2>
       {movieCastError && (
         <p>Ooops! Something went wrong! Reload the page please!</p>

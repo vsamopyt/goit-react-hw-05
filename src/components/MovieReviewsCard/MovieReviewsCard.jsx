@@ -7,31 +7,28 @@ export default function MovieReviewsCard({ item }) {
     created_at,
     author_details: { avatar_path },
   } = item;
-  console.log(avatar_path);
+
   const style = { color: 'black', fontSize: '32px' };
 
   return (
     <>
-    <div className={css.movieReviewsCardAuthorContainer}>
+      <div className={css.movieReviewsCardAuthorContainer}>
+        <div className={css.movieReviewsCardImgContainer}>
+          {avatar_path ? (
+            <img
+              className={css.movieReviewsCardImg}
+              src={`https://image.tmdb.org/t/p/w500/${avatar_path}`}
+              alt="avatar"
+            />
+          ) : (
+            <RxAvatar style={style} />
+          )}
+        </div>
+        <h3>{author}</h3>
+      </div>
 
-    <div className={css.movieReviewsCardImgContainer}>
-    {avatar_path ? (
-      <img
-        className={css.movieReviewsCardImg}
-        src={`https://image.tmdb.org/t/p/w500/${avatar_path}`}
-        alt="avatar"
-      />
-    ) : (
-      <RxAvatar style={style} />
-    )}
-    {/* <img className ={css.movieReviewsCardImg}src={`https://image.tmdb.org/t/p/w500/${avatar_path}`} alt="avatar" /> */}
-  </div>
-      <h3>{author}</h3>
-    </div>
-      
       <p className={css.movieReviewsCardText}>{content}</p>
       <p>{created_at}</p>
-      
     </>
   );
 }
