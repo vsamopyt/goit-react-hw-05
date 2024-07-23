@@ -29,8 +29,8 @@ export default function MovieCast() {
   }, [movieId]);
  
   return (
-    <div>
-      <h2>Movie Cast</h2>
+    <div className={css.movieCastLoadingWraper}>
+      <h2 className={css.movieCastLoadingTitle} >Movie Cast</h2>
       {movieCastError && (
         <p>Ooops! Something went wrong! Reload the page please!</p>
       )}
