@@ -63,11 +63,20 @@ export default function MoviesPage() {
   const titleFilter = searchParams.get('title') ?? '';
 
   function handleForm(newSearchName) {
-    setSearchParams({ title: newSearchName });
+    if(!newSearchName) {
+      return
+    }
+    else {
+      setSearchParams({ title: newSearchName });
+    }
+  
   }
 
   useEffect(() => {
     async function getMovieBySearch() {
+      if (!titleFilter) {
+        return;
+      }
       try {
         setMoviesPageLoading(true);
         const result = await fetchMoviesBySearch(titleFilter);
