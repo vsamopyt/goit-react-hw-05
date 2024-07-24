@@ -58,7 +58,6 @@ export default function MoviesPage() {
   const [searchValue, setSearchValue] = useState([]);
   const [moviesPageLoading, setMoviesPageLoading] = useState(false);
   const [moviesPageError, setMoviesPageError] = useState(false);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const titleFilter = searchParams.get('title') ?? '';
 

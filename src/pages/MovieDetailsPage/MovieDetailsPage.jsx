@@ -1,6 +1,6 @@
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import BarLoader from 'react-spinners/BarLoader';
 import { fetchMovieById } from '../../movies-api';
 import MovieDetailsCard from '../../components/MovieDetailsCard/MovieDetailsCard';
@@ -12,6 +12,7 @@ export default function MovieDetailsPage() {
   const [MovieDetailsPageLoading, setMovieDetailsPageLoading] = useState(false);
   const [MovieDetailsPageError, setMovieDetailsPageError] = useState(false);
   const location = useLocation();
+  const backLinkRef = useRef(location.state ?? "/movies");
 
   useEffect(() => {
     if (!movieId) {
@@ -36,7 +37,7 @@ export default function MovieDetailsPage() {
       <div className={css.movieDetailsPageContainer}>
         <Link
           className={css.movieDetailsPageLimk}
-          to={location.state ?? '/movies'}
+          to={backLinkRef.current}
         >
           go back
         </Link>
@@ -61,8 +62,9 @@ export default function MovieDetailsPage() {
             </Link>
           </li>
         </ul>
-
+        <Suspense fallback={<div>Loading child route component</div>}>
         <Outlet />
+        </Suspense>
       </div>
       ;
     </section>
